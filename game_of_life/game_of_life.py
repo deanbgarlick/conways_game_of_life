@@ -73,7 +73,39 @@ class Matrix:
             self.enter_next_epoc()
             time.sleep(time_interval)
 
-    def play_conways_game_of_life(self, n, time_interval, alive_coordinates_list):
-        self.set_initial_state(alive_coordinates_list)
-        self.run_for_n_epocs(n, time_interval)
 
+class Interface:
+
+    def __init__(self, x_lim, y_lim):
+        self.view = View()
+        self.matrix = Matrix(x_lim, y_lim)
+
+    def change_matrix(self, x_lim, y_lim):
+        self.matrix = Matrix(x_lim, y_lim)
+
+    def change_view(self, alive_token=None, dead_token=None):
+        self.view.set_display_tokens(alive_token, dead_token)
+
+    def play_conways_game_of_life(self, n_epocs, alive_coordinates_list, time_interval=4):
+        self.matrix.set_initial_state(alive_coordinates_list)
+        for _ in range(1, n_epocs+1):
+            self.matrix.run_for_n_epocs(1, time_interval)
+            self.view.print_matrix_state(self.matrix)
+
+
+class View:
+
+    def __init__(self, alive_token='X', dead_token='O'):
+        self.display_token_dict = {'alive': alive_token, 'dead': dead_token}
+
+    def set_display_tokens(self, alive_token, dead_token):
+        self.display_token_dict = {'alive': alive_token, 'dead': dead_token}
+
+    def print_matrix_state(self, matrix):
+        row_divider = '|-'*len(matrix[0]) + '|'
+        for cell_row in matrix:
+            print(row_divider)
+            cell_row_view = ['|'+str(self.display_token_dict[cell.status]) for cell in cell_row]
+            cell_row_view = ''.join(cell_row_view) + '|'
+            print(cell_row_view)
+            print(row_divider)
