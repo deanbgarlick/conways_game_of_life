@@ -111,7 +111,7 @@ class View:
         row_divider = '|-'*len(matrix.cell_grid[0]) + '|'
         print('\n\n\n Epoc: '+str(epoc) + '\n')
         print(top_row)
-        print(row_divider)
+        print('-'+row_divider)
         for rowno, cell_row in enumerate(matrix.cell_grid):
             cell_row_view = ['|'+str(self.display_token_dict[cell.status]) for cell in cell_row]
             cell_row_view = ''.join(cell_row_view) + '|'
