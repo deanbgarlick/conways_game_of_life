@@ -1,5 +1,6 @@
 import time
 
+
 class Cell:
 
     def __init__(self, x, y):
