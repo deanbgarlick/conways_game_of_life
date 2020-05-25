@@ -26,7 +26,7 @@ class Matrix:
 
         self.x_lim = x_lim
         self.y_lim = y_lim
-        self.cell_grid = ((Cell(x, y) for x in range(x_lim)) for y in range(y_lim))
+        self.cell_grid = [(Cell(x, y) for x in range(x_lim)) for y in range(y_lim)]
 
     def get_cell_from_coordinate(self, cell_coordinate):
         return self.cell_grid[cell_coordinate[0]][cell_coordinate[1]]
