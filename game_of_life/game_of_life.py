@@ -15,7 +15,7 @@ class Cell:
         adjacent_cells_list = []
         for x_increment in [-1, 0, 1]:
             for y_increment in [-1, 0, 1]:
-                if x_increment!=0 and y_increment!=0:
+                if x_increment !=0  or y_increment !=0:
                     if (self.x + x_increment < x_lim) and (self.x + x_increment > 0):
                         if (self.y + y_increment < y_lim) and (self.y + y_increment > 0):
                             adjacent_cells_list.append((self.x + x_increment, self.y + y_increment))
@@ -28,7 +28,7 @@ class Matrix:
 
         self.x_lim = x_lim
         self.y_lim = y_lim
-        self.cell_grid = [[Cell(x, y, x_lim, y_lim) for x in range(x_lim)] for y in range(y_lim)]
+        self.cell_grid = [[Cell(x, y, x_lim, y_lim) for y in range(y_lim)] for x in range(y_lim)]
 
     def get_cell_from_coordinate(self, cell_coordinate):
         return self.cell_grid[cell_coordinate[0]][cell_coordinate[1]]
@@ -52,7 +52,7 @@ class Matrix:
         if (
                 self.count_alive_adjacent_cells(cell_coordinate) > 2
         ) | (
-                self.count_alive_adjacent_cells(cell_coordinate) < 1
+                self.count_alive_adjacent_cells(cell_coordinate) < 2
         ):
             self.get_cell_from_coordinate(cell_coordinate).next_status = 'dead'
 
