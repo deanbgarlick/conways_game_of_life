@@ -4,7 +4,6 @@ import time
 class Cell:
 
     def __init__(self, x, y, x_lim, y_lim):
-
         self.x = x
         self.y = y
         self.status = 'dead'
@@ -25,7 +24,6 @@ class Cell:
 class Matrix:
 
     def __init__(self, x_lim, y_lim):
-
         self.x_lim = x_lim
         self.y_lim = y_lim
         self.cell_grid = [[Cell(x, y, x_lim, y_lim) for y in range(y_lim)] for x in range(x_lim)]
